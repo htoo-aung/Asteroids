@@ -1,7 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://2j34553hxo3n"]
+[gd_scene load_steps=11 format=3 uid="uid://2j34553hxo3n"]
 
 [ext_resource type="Texture2D" uid="uid://cm77wj32fcxae" path="res://assets/sprites/Spaceship.png" id="1_52nlk"]
 [ext_resource type="Script" path="res://scripts/missile.gd" id="1_q4k2j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mw2b2"]
+atlas = ExtResource("1_52nlk")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jheyy"]
+atlas = ExtResource("1_52nlk")
+region = Rect2(32, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eagun"]
+atlas = ExtResource("1_52nlk")
+region = Rect2(64, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ay3g5"]
 atlas = ExtResource("1_52nlk")
@@ -17,6 +29,20 @@ region = Rect2(96, 128, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1l24e"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mw2b2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jheyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eagun")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ay3g5")
@@ -41,9 +67,7 @@ script = ExtResource("1_q4k2j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1l24e")
-animation = &"shoot"
-frame = 2
-frame_progress = 0.767425
+animation = &"explode"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)

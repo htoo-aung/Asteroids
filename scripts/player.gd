@@ -32,17 +32,26 @@ func get_input(delta: float):
 
 func shoot(delta: float):
 	const MISSILE = preload("res://scenes/missile.tscn")
+	
 	var new_missile1 = MISSILE.instantiate()
 	var new_missile2 = MISSILE.instantiate()
 	
+	# Handle missile firing
 	new_missile1.global_position = %ShootingPoint1.global_position
 	new_missile1.global_rotation = global_rotation
 	new_missile2.global_position = %ShootingPoint2.global_position
 	new_missile2.global_rotation = global_rotation
 	
-	# Add missiles to the main scene instead of the shooting points
+	# Ensure missiles do not stick to ship's rotation
 	get_tree().current_scene.add_child(new_missile1)
 	get_tree().current_scene.add_child(new_missile2)
+	
+	# Handle movement
+	const SPEED = 5.0
+	
+	var direction = Vector2(cos(rotation), sin(rotation))
+	
+	position += -(direction) * SPEED * delta
 	
 	start_cooldown()
 	animatedSprite.play("shoot")
