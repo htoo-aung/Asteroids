@@ -6,7 +6,7 @@ var is_exploding = false
 
 func _physics_process(delta: float) -> void:
 	const SPEED = 100.0
-	const RANGE = 500.0
+	const RANGE = 200.0
 	
 	if(not is_exploding):
 		var direction = Vector2.UP.rotated(rotation)
@@ -26,4 +26,3 @@ func start_explosion():
 	
 func _on_explosion_finished():
 	queue_free()
-	print("dequeued")

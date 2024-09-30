@@ -5,6 +5,7 @@ extends CharacterBody2D
 
 var player_health := 100.0
 var rotate_speed := 5.0
+var recoil_speed := 50.0
 var can_shoot = true
 
 func _ready():
@@ -13,6 +14,7 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	get_input(delta)
+	move_and_slide()
 	
 func get_input(delta: float):
 	if(Input.is_anything_pressed() == false):
@@ -29,6 +31,7 @@ func get_input(delta: float):
 	if(can_shoot == true):
 		if(Input.is_action_pressed("shoot")):
 			shoot(delta)
+			
 
 func shoot(delta: float):
 	const MISSILE = preload("res://scenes/missile.tscn")
@@ -42,21 +45,18 @@ func shoot(delta: float):
 	new_missile2.global_position = %ShootingPoint2.global_position
 	new_missile2.global_rotation = global_rotation
 	
-	# Ensure missiles do not stick to ship's rotation
+	# Missiles do not stick to ship's rotation
 	get_tree().current_scene.add_child(new_missile1)
 	get_tree().current_scene.add_child(new_missile2)
-	
-	# Handle movement
-	const SPEED = 5.0
-	
-	var direction = Vector2(cos(rotation), sin(rotation))
-	
-	position += -(direction) * SPEED * delta
 	
 	start_cooldown()
 	animatedSprite.play("shoot")
 	
 
+func recoil_movement(delta: float):
+	var recoil_direction = Vector2.DOWN.rotated(rotation)
+	position += recoil_direction * recoil_speed * delta
+	
 
 func start_cooldown():
 	can_shoot = false
