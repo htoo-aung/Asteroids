@@ -1,7 +1,9 @@
 extends RigidBody2D
 
+@onready var shooting_sfx: AudioStreamPlayer2D = $ShootingSFX
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
+@onready var shooting_sfx_2: AudioStreamPlayer2D = $ShootingSFX2
 
 var player_health := 100.0
 var rotate_speed := 1000.0
@@ -53,6 +55,7 @@ func shoot():
 	
 	start_cooldown()
 	animatedSprite.play("shoot")
+	shooting_sfx.play()
 	
 	apply_central_impulse(Vector2.DOWN.rotated(rotation) * recoil_force)
 
