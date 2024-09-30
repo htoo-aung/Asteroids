@@ -165,7 +165,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_mge1x")
 }],
 "loop": true,
-"name": &"teleport",
+"name": &"warp",
 "speed": 5.0
 }]
 
@@ -177,18 +177,21 @@ gravity_scale = 0.0
 script = ExtResource("1_2gx6f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wf0si")
-animation = &"shoot"
+animation = &"warp"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_cdx77")
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="ShootingPoint1" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-10, -11)
+position = Vector2(-19, -19)
 
 [node name="ShootingPoint2" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(10, -11)
+position = Vector2(19, -19)

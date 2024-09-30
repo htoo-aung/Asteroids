@@ -4,16 +4,18 @@ extends RigidBody2D
 @onready var timer: Timer = $Timer
 
 var player_health := 100.0
-var rotate_speed := 200.0
-var recoil_force := 35.0
+var rotate_speed := 1000.0
+var recoil_force := 80.0
 var can_shoot = true
 
 func _ready():
 	timer.one_shot = true
 	timer.connect("timeout", _on_timer_timeout)
 
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	warp()
+
 func _physics_process(delta: float) -> void:
-	
 	get_input(delta)
 	
 func get_input(delta: float):
@@ -30,10 +32,10 @@ func get_input(delta: float):
 		
 	if(can_shoot == true):
 		if(Input.is_action_pressed("shoot")):
-			shoot(delta)
+			shoot()
 			
 
-func shoot(delta: float):
+func shoot():
 	const MISSILE = preload("res://scenes/missile.tscn")
 	
 	var new_missile1 = MISSILE.instantiate()
@@ -60,3 +62,12 @@ func start_cooldown():
 
 func _on_timer_timeout():
 	can_shoot = true
+	
+func warp():
+	var prev_pos = position
+	var screen_bounds : Vector2 = get_viewport_rect().size / 2.0
+	var new_pos = position
+	
+	new_pos.x = wrapf(new_pos.x, -screen_bounds.x, screen_bounds.x)
+	new_pos.y = wrapf(new_pos.y, -screen_bounds.y, screen_bounds.y)
+	position = new_pos

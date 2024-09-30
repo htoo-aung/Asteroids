@@ -63,6 +63,7 @@ radius = 2.0
 height = 12.0
 
 [node name="Missile" type="Area2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_q4k2j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

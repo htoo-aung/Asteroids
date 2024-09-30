@@ -5,8 +5,8 @@ var distance_travelled = 0
 var is_exploding = false
 
 func _physics_process(delta: float) -> void:
-	const SPEED = 100.0
-	const RANGE = 200.0
+	const SPEED = 300.0
+	const RANGE = 500.0
 	
 	if(not is_exploding):
 		var direction = Vector2.UP.rotated(rotation)
