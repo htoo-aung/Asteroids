@@ -1,6 +1,9 @@
 extends Area2D
 
+@onready var explosion_sfx: AudioStreamPlayer2D = $ExplosionSFX
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
+const ASTEROID = preload("res://scenes/asteroid.tscn")
+
 var distance_travelled = 0
 var is_exploding = false
 
@@ -22,7 +25,12 @@ func _physics_process(delta: float) -> void:
 func start_explosion():
 	is_exploding = true
 	animatedSprite.play("explode")
+	explosion_sfx.play()
 	animatedSprite.connect("animation_finished", _on_explosion_finished)
+	
+func _on_body_entered(body: Node2D) -> void:
+	body.start_explosion()
+	start_explosion()
 	
 func _on_explosion_finished():
 	queue_free()

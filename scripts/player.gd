@@ -3,12 +3,12 @@ extends RigidBody2D
 @onready var shooting_sfx: AudioStreamPlayer2D = $ShootingSFX
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
-@onready var shooting_sfx_2: AudioStreamPlayer2D = $ShootingSFX2
 
 var player_health := 100.0
-var rotate_speed := 1000.0
+var rotate_speed := 2000.0
 var recoil_force := 80.0
 var can_shoot = true
+var is_warp = false
 
 func _ready():
 	timer.one_shot = true
@@ -19,7 +19,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 func _physics_process(delta: float) -> void:
 	get_input(delta)
-	
+		
 func get_input(delta: float):
 	if(Input.is_anything_pressed() == false):
 		animatedSprite.play("idle")
@@ -32,9 +32,8 @@ func get_input(delta: float):
 		apply_torque(rotate_speed)
 		animatedSprite.play("rotate_right")
 		
-	if(can_shoot == true):
-		if(Input.is_action_pressed("shoot")):
-			shoot()
+	if(can_shoot == true and Input.is_action_pressed("shoot")):
+		shoot()
 			
 
 func shoot():
@@ -57,7 +56,7 @@ func shoot():
 	animatedSprite.play("shoot")
 	shooting_sfx.play()
 	
-	apply_central_impulse(Vector2.DOWN.rotated(rotation) * recoil_force)
+	#apply_central_impulse(Vector2.DOWN.rotated(rotation) * recoil_force)
 
 func start_cooldown():
 	can_shoot = false
@@ -74,3 +73,12 @@ func warp():
 	new_pos.x = wrapf(new_pos.x, -screen_bounds.x, screen_bounds.x)
 	new_pos.y = wrapf(new_pos.y, -screen_bounds.y, screen_bounds.y)
 	position = new_pos
+
+func start_warp():
+	is_warp = true
+	animatedSprite.play("warp")
+	animatedSprite.connect("animation_finished", _on_warp_finished)
+
+func _on_warp_finished():
+	is_warp = false
+	animatedSprite.disconnect("animation_finished", _on_warp_finished)

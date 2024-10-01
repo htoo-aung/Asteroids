@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://bkkrxhpnkcpss"]
+
+[ext_resource type="Texture2D" uid="uid://ds237xffs6jpb" path="res://assets/sprites/asteroid.png" id="1_ds0dk"]
+[ext_resource type="Script" path="res://scripts/asteroid.gd" id="1_p33fk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drfka"]
+atlas = ExtResource("1_ds0dk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7orlc"]
+atlas = ExtResource("1_ds0dk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1ksi"]
+atlas = ExtResource("1_ds0dk")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkpoc"]
+atlas = ExtResource("1_ds0dk")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xboa1"]
+atlas = ExtResource("1_ds0dk")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hv3r2"]
+atlas = ExtResource("1_ds0dk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tqytl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drfka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7orlc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1ksi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkpoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xboa1")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hv3r2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_22h4a"]
+radius = 13.0
+
+[node name="Asteroid" type="RigidBody2D"]
+collision_layer = 2
+gravity_scale = 0.0
+script = ExtResource("1_p33fk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_tqytl")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_22h4a")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
