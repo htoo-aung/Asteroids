@@ -117,4 +117,7 @@ func _on_damaged_finished():
 	
 func death():
 	animatedSprite.play("death")
+
+func get_health():
+	return health
 	
