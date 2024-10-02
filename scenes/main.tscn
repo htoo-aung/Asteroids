@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://b3vg3a1qdxhdt"]
+[gd_scene load_steps=32 format=3 uid="uid://b3vg3a1qdxhdt"]
 
 [ext_resource type="PackedScene" uid="uid://b1fgppfdgww5t" path="res://scenes/level.tscn" id="1_gedsy"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_w2mvy"]
 [ext_resource type="PackedScene" uid="uid://brukriyo3lckw" path="res://scenes/player.tscn" id="2_m5syh"]
 [ext_resource type="Texture2D" uid="uid://bievwn5fjcer6" path="res://assets/sprites/stars.png" id="3_psbwy"]
 [ext_resource type="PackedScene" uid="uid://bkkrxhpnkcpss" path="res://scenes/asteroid.tscn" id="4_24ike"]
+[ext_resource type="FontFile" uid="uid://ddg18mf0nb4yj" path="res://assets/fonts/PressStart2P-vaV7.ttf" id="6_bakdp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n8pud"]
 atlas = ExtResource("3_psbwy")
@@ -114,6 +115,114 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydutk"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ue0g2"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwhs8"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nq4h7"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1mm1"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbwe1"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(32, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqub3"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yyb5"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stmd7"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(32, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu5pu"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(64, 192, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sim25"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydutk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ue0g2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwhs8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nq4h7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1mm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbwe1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqub3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2yyb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stmd7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu5pu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu5pu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu5pu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu5pu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu5pu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu5pu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu5pu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu5pu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu5pu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu5pu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu5pu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="Curve2D" id="Curve2D_vo2vv"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -612, -363, 0, 0, 0, 0, 615, -369, 0, 0, 0, 0, 624, 352, 0, 0, 0, 0, -618, 353, 0, 0, 0, 0, -612, -363)
@@ -191,16 +300,14 @@ autoplay = "stars2"
 z_index = -1
 position = Vector2(-22, 275)
 sprite_frames = SubResource("SpriteFrames_yuwmv")
-animation = &"stars2"
-autoplay = "stars2"
+autoplay = "default"
 
 [node name="Stars11" type="AnimatedSprite2D" parent="Background"]
 z_index = -1
 position = Vector2(-518, 246)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_yuwmv")
-animation = &"stars4"
-autoplay = "stars4"
+autoplay = "default"
 
 [node name="Stars12" type="AnimatedSprite2D" parent="Background"]
 z_index = -1
@@ -246,16 +353,23 @@ frame_progress = 0.377799
 z_index = -1
 position = Vector2(-116, 171)
 sprite_frames = SubResource("SpriteFrames_yuwmv")
-animation = &"stars2"
-autoplay = "stars2"
+autoplay = "default"
 
 [node name="Stars5" type="AnimatedSprite2D" parent="Background"]
 z_index = -1
-position = Vector2(-249, -104)
+position = Vector2(-248, -104)
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_yuwmv")
-animation = &"stars3"
-autoplay = "stars3"
+autoplay = "default"
+
+[node name="Label" type="Label" parent="Background/Stars5"]
+offset_left = 481.538
+offset_top = -163.846
+offset_right = 625.538
+offset_bottom = -115.846
+theme_override_fonts/font = ExtResource("6_bakdp")
+text = "Htoo Aung
+KHA451"
 
 [node name="Stars17" type="AnimatedSprite2D" parent="Background"]
 z_index = -1
@@ -272,6 +386,11 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_edv0w")
 autoplay = "default"
 frame_progress = 0.04591
+
+[node name="ShootingStar" type="AnimatedSprite2D" parent="Background"]
+position = Vector2(-353, 131)
+sprite_frames = SubResource("SpriteFrames_sim25")
+autoplay = "default"
 
 [node name="AsteroidTimer" type="Timer" parent="."]
 
