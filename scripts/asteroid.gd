@@ -16,5 +16,15 @@ func start_explosion():
 	animatedSprite.play("explode")
 	animatedSprite.connect("animation_finished", _on_explosion_finished)
 	
+	set_collision_layer(0)
+	set_collision_mask(0)
+	
+	get_node("CollisionShape2D").queue_free()
+	
 func _on_explosion_finished():
 	queue_free()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	body.damage_taken()
+	print("hit")

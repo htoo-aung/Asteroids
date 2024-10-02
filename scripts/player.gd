@@ -15,23 +15,27 @@ func _ready():
 	timer.connect("timeout", _on_timer_timeout)
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	
 	warp()
 
 func _physics_process(delta: float) -> void:
 	get_input(delta)
 		
 func get_input(delta: float):
-	if(Input.is_anything_pressed() == false):
-		animatedSprite.play("idle")
-	
 	if(Input.is_action_pressed("rotate_left")):
 		apply_torque(-rotate_speed)
-		animatedSprite.play("rotate_left")
-		
-	if(Input.is_action_pressed("rotate_right")):
+	elif(Input.is_action_pressed("rotate_right")):
 		apply_torque(rotate_speed)
-		animatedSprite.play("rotate_right")
-		
+	
+	if not is_warp:
+		if(Input.is_action_pressed("rotate_left")):
+			animatedSprite.play("rotate_left")
+		elif(Input.is_action_pressed("rotate_right")):
+			animatedSprite.play("rotate_right")
+		else:
+			animatedSprite.play("idle")
+	
+	
 	if(can_shoot == true and Input.is_action_pressed("shoot")):
 		shoot()
 			
@@ -70,14 +74,20 @@ func warp():
 	var screen_bounds : Vector2 = get_viewport_rect().size / 2.0
 	var new_pos = position
 	
+	if new_pos.x != wrapf(new_pos.x, -screen_bounds.x, screen_bounds.x):
+		start_warp_animation()
+	if new_pos.y != wrapf(new_pos.y, -screen_bounds.y, screen_bounds.y):
+		start_warp_animation()
+	
 	new_pos.x = wrapf(new_pos.x, -screen_bounds.x, screen_bounds.x)
 	new_pos.y = wrapf(new_pos.y, -screen_bounds.y, screen_bounds.y)
 	position = new_pos
 
-func start_warp():
-	is_warp = true
-	animatedSprite.play("warp")
-	animatedSprite.connect("animation_finished", _on_warp_finished)
+func start_warp_animation():
+	if not is_warp:
+		is_warp = true
+		animatedSprite.play("warp")
+		animatedSprite.connect("animation_finished", _on_warp_finished)
 
 func _on_warp_finished():
 	is_warp = false
@@ -86,8 +96,4 @@ func _on_warp_finished():
 func damage_taken():
 	animatedSprite.play("death")
 	
-
-
-func _on_body_entered(body: Node) -> void:
-	if body is RigidBody2D:
-		print("working")
+	

@@ -155,17 +155,8 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0l0is")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0amsh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_eha54")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mge1x")
 }],
-"loop": true,
+"loop": false,
 "name": &"warp",
 "speed": 5.0
 }]
@@ -175,13 +166,15 @@ height = 26.0
 
 [node name="Player" type="RigidBody2D"]
 gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_2gx6f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wf0si")
 animation = &"warp"
-autoplay = "warp"
+autoplay = "idle"
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 scale = Vector2(2, 2)
@@ -199,5 +192,3 @@ position = Vector2(19, -19)
 
 [node name="ShootingSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_3fntx")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -80,11 +80,13 @@ func _on_body_entered(body: Node2D) -> void:
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0djh4"]
-radius = 33.0151
+radius = 58.0086
 
 [node name="Asteroid" type="RigidBody2D"]
 collision_layer = 2
 gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_p33fk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -107,3 +109,4 @@ script = SubResource("GDScript_vqyi8")
 shape = SubResource("CircleShape2D_0djh4")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
