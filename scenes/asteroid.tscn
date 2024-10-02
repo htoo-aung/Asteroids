@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bkkrxhpnkcpss"]
+[gd_scene load_steps=13 format=3 uid="uid://bkkrxhpnkcpss"]
 
 [ext_resource type="Texture2D" uid="uid://ds237xffs6jpb" path="res://assets/sprites/asteroid.png" id="1_ds0dk"]
 [ext_resource type="Script" path="res://scripts/asteroid.gd" id="1_p33fk"]
@@ -61,6 +61,27 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_22h4a"]
 radius = 13.0
 
+[sub_resource type="GDScript" id="GDScript_vqyi8"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_body_entered(body: Node2D) -> void:
+	body.damage_taken()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0djh4"]
+radius = 33.0151
+
 [node name="Asteroid" type="RigidBody2D"]
 collision_layer = 2
 gravity_scale = 0.0
@@ -78,3 +99,11 @@ scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_22h4a")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+script = SubResource("GDScript_vqyi8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_0djh4")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

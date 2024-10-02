@@ -56,7 +56,7 @@ func shoot():
 	animatedSprite.play("shoot")
 	shooting_sfx.play()
 	
-	#apply_central_impulse(Vector2.DOWN.rotated(rotation) * recoil_force)
+	apply_central_impulse(Vector2.DOWN.rotated(rotation) * recoil_force)
 
 func start_cooldown():
 	can_shoot = false
@@ -82,3 +82,12 @@ func start_warp():
 func _on_warp_finished():
 	is_warp = false
 	animatedSprite.disconnect("animation_finished", _on_warp_finished)
+
+func damage_taken():
+	animatedSprite.play("death")
+	
+
+
+func _on_body_entered(body: Node) -> void:
+	if body is RigidBody2D:
+		print("working")

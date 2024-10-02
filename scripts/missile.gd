@@ -2,7 +2,6 @@ extends Area2D
 
 @onready var explosion_sfx: AudioStreamPlayer2D = $ExplosionSFX
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
-const ASTEROID = preload("res://scenes/asteroid.tscn")
 
 var distance_travelled = 0
 var is_exploding = false

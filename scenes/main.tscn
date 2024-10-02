@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://b3vg3a1qdxhdt"]
+[gd_scene load_steps=20 format=3 uid="uid://b3vg3a1qdxhdt"]
 
 [ext_resource type="PackedScene" uid="uid://b1fgppfdgww5t" path="res://scenes/level.tscn" id="1_gedsy"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_w2mvy"]
 [ext_resource type="PackedScene" uid="uid://brukriyo3lckw" path="res://scenes/player.tscn" id="2_m5syh"]
 [ext_resource type="Texture2D" uid="uid://bievwn5fjcer6" path="res://assets/sprites/stars.png" id="3_psbwy"]
 [ext_resource type="PackedScene" uid="uid://bkkrxhpnkcpss" path="res://scenes/asteroid.tscn" id="4_24ike"]
@@ -113,16 +114,21 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Main" type="Node2D"]
+[sub_resource type="Curve2D" id="Curve2D_vo2vv"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -612, -363, 0, 0, 0, 0, 615, -369, 0, 0, 0, 0, 624, 352, 0, 0, 0, 0, -618, 353, 0, 0, 0, 0, -612, -363)
+}
+point_count = 5
 
-[node name="Level" parent="." instance=ExtResource("1_gedsy")]
+[node name="Main" type="Node2D"]
+script = ExtResource("1_w2mvy")
+asteroid_scene = ExtResource("4_24ike")
 
 [node name="Player" parent="." instance=ExtResource("2_m5syh")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Asteroid" parent="." instance=ExtResource("4_24ike")]
-position = Vector2(-245, 132)
+[node name="Level" parent="Camera2D" instance=ExtResource("1_gedsy")]
 
 [node name="Background" type="Node" parent="."]
 
@@ -266,3 +272,14 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_edv0w")
 autoplay = "default"
 frame_progress = 0.04591
+
+[node name="AsteroidTimer" type="Timer" parent="."]
+
+[node name="AsteroidPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_vo2vv")
+
+[node name="AsteroidSpawnLocation" type="PathFollow2D" parent="AsteroidPath"]
+position = Vector2(-612, -363)
+rotation = -0.00488994
+
+[connection signal="timeout" from="AsteroidTimer" to="." method="_on_mob_timer_timeout"]
