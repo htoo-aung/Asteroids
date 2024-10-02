@@ -3,8 +3,7 @@ extends RigidBody2D
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var asteroidSprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var asteroidCollisionShape: CollisionShape2D = $CollisionShape2D
-
-const PLAYER = preload("res://scenes/player.tscn")
+@onready var damageCollisionShape: CollisionShape2D = $Area2D/CollisionShape2D
 
 var lifetime := 30.0
 
@@ -15,6 +14,7 @@ func _ready() -> void:
 	
 	asteroidSprite.scale = new_scale
 	asteroidCollisionShape.scale = new_scale
+	damageCollisionShape.scale = new_scale
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -41,6 +41,7 @@ func _on_explosion_finished():
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	body.is_damaged = true
 	body.damage_taken()
 	print("hit")
 	

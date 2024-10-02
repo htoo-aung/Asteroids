@@ -219,8 +219,10 @@ script = ExtResource("1_2gx6f")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wf0si")
-animation = &"warp"
+animation = &"damaged"
 autoplay = "idle"
+frame = 3
+frame_progress = 1.0
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 scale = Vector2(2, 2)

@@ -2,6 +2,8 @@ extends Node2D
 
 @export var asteroid_scene: PackedScene
 
+const PLAYER = preload("res://scenes/player.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AsteroidTimer.start()
@@ -29,3 +31,8 @@ func _on_mob_timer_timeout() -> void:
 	new_asteroid.linear_velocity = velocity.rotated(direction)
 	
 	add_child(new_asteroid)
+
+func game_over():
+	if (PLAYER.health == 0):
+		get_tree().reload_current_scene()
+		PLAYER.death() 
