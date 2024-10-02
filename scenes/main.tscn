@@ -4,13 +4,13 @@
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_w2mvy"]
 [ext_resource type="PackedScene" uid="uid://brukriyo3lckw" path="res://scenes/player.tscn" id="2_m5syh"]
 [ext_resource type="Script" path="res://scripts/hud_manager.gd" id="3_ihvn3"]
-[ext_resource type="Script" path="res://scripts/game_manager.gd" id="3_nxakd"]
 [ext_resource type="Texture2D" uid="uid://bievwn5fjcer6" path="res://assets/sprites/stars.png" id="3_psbwy"]
+[ext_resource type="PackedScene" uid="uid://dbdixs75phf3" path="res://scenes/game_manager.tscn" id="3_uk04j"]
 [ext_resource type="PackedScene" uid="uid://bkkrxhpnkcpss" path="res://scenes/asteroid.tscn" id="4_24ike"]
 [ext_resource type="FontFile" uid="uid://ddg18mf0nb4yj" path="res://assets/fonts/PressStart2P-vaV7.ttf" id="6_bakdp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybsgm"]
-bg_color = Color(0.129412, 0.00392157, 0.211765, 0.403922)
+bg_color = Color(0.129412, 0.00392157, 0.211765, 0.568627)
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
@@ -250,8 +250,7 @@ point_count = 5
 script = ExtResource("1_w2mvy")
 asteroid_scene = ExtResource("4_24ike")
 
-[node name="GameManager" type="Node" parent="."]
-script = ExtResource("3_nxakd")
+[node name="GameManager" parent="." instance=ExtResource("3_uk04j")]
 
 [node name="HUDManager" type="Node" parent="."]
 script = ExtResource("3_ihvn3")
@@ -280,7 +279,15 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_6xp1r")
 value = 100.0
 show_percentage = false
 
-[node name="Label" type="Label" parent="."]
+[node name="Score" type="Label" parent="."]
+offset_left = -328.0
+offset_top = -307.0
+offset_right = -200.0
+offset_bottom = -284.0
+theme_override_fonts/font = ExtResource("6_bakdp")
+text = "Score: 0"
+
+[node name="NameNSID" type="Label" parent="."]
 z_index = -1
 offset_left = 410.0
 offset_top = -308.0
@@ -430,6 +437,7 @@ autoplay = "default"
 frame_progress = 0.04591
 
 [node name="ShootingStar" type="AnimatedSprite2D" parent="Background"]
+z_index = -1
 position = Vector2(-353, 131)
 sprite_frames = SubResource("SpriteFrames_sim25")
 autoplay = "default"

@@ -54,9 +54,6 @@ func get_input(delta: float):
 	if(can_shoot == true and Input.is_action_pressed("shoot")):
 		shoot()
 		
-	if (Input.is_action_pressed("take_damage")):
-		take_damage()
-			
 
 func shoot():
 	const MISSILE = preload("res://scenes/missile.tscn")
@@ -69,6 +66,9 @@ func shoot():
 	new_missile1.global_rotation = global_rotation
 	new_missile2.global_position = %ShootingPoint2.global_position
 	new_missile2.global_rotation = global_rotation
+	
+	new_missile1.connect("score_added", get_node("/root/Main/GameManager").add_score)
+	new_missile2.connect("score_added", get_node("/root/Main/GameManager").add_score)
 	
 	# Missiles do not stick to ship's rotation
 	get_tree().current_scene.add_child(new_missile1)
@@ -137,7 +137,3 @@ func death():
 
 func get_health():
 	return health
-	
-func take_damage():
-	health -= 20
-	

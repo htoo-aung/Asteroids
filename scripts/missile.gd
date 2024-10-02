@@ -6,6 +6,8 @@ extends Area2D
 var distance_travelled = 0
 var is_exploding = false
 
+signal score_added
+
 func _physics_process(delta: float) -> void:
 	const SPEED = 300.0
 	const RANGE = 500.0
@@ -29,6 +31,7 @@ func start_explosion():
 		animatedSprite.connect("animation_finished", _on_explosion_finished)
 	
 func _on_body_entered(body: Node2D) -> void:
+	emit_signal("score_added")
 	body.start_explosion()
 	start_explosion()
 	
