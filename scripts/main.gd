@@ -31,8 +31,3 @@ func _on_mob_timer_timeout() -> void:
 	new_asteroid.linear_velocity = velocity.rotated(direction)
 	
 	add_child(new_asteroid)
-
-func game_over():
-	if (PLAYER.health == 0):
-		get_tree().reload_current_scene()
-		PLAYER.death() 

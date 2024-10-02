@@ -11,6 +11,7 @@ var recoil_force := 80.0
 var can_shoot = true
 var is_warp = false
 var is_damaged = false
+var is_game_over = false
 
 func _ready():
 	timer.one_shot = true
@@ -25,6 +26,9 @@ func _physics_process(delta: float) -> void:
 	update_animation()
 
 func update_animation():
+	if (is_game_over):
+		return
+		
 	if (is_damaged):
 		animatedSprite.play("damaged")
 	elif (is_warp):
@@ -39,6 +43,9 @@ func update_animation():
 		animatedSprite.play("idle")
 
 func get_input(delta: float):
+	if (is_game_over):
+		return
+		
 	if(Input.is_action_pressed("rotate_left")):
 		apply_torque(-rotate_speed)
 	elif(Input.is_action_pressed("rotate_right")):
@@ -46,6 +53,9 @@ func get_input(delta: float):
 	
 	if(can_shoot == true and Input.is_action_pressed("shoot")):
 		shoot()
+		
+	if (Input.is_action_pressed("take_damage")):
+		take_damage()
 			
 
 func shoot():
@@ -98,6 +108,9 @@ func _on_animation_finished():
 		is_damaged = false
 	elif (anim_name == "shoot"):
 		animatedSprite.play("idle")
+	elif (anim_name == "death"):
+		animatedSprite.stop()
+		animatedSprite.frame = animatedSprite.sprite_frames.get_frame_count("death") - 1
 		
 func start_warp_animation():
 	if not is_warp:
@@ -111,13 +124,20 @@ func damage_taken():
 	damaged_sfx.play()
 	print(health)
 	is_damaged = true
+	if health <= 0:
+		death()
 
 func _on_damaged_finished():
 	is_damaged = false
 	
 func death():
-	animatedSprite.play("death")
+	if not is_game_over:
+		is_game_over = true
+		animatedSprite.play("death")
 
 func get_health():
 	return health
+	
+func take_damage():
+	health -= 20
 	
