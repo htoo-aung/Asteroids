@@ -1,8 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://brukriyo3lckw"]
+[gd_scene load_steps=29 format=3 uid="uid://brukriyo3lckw"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2gx6f"]
 [ext_resource type="Texture2D" uid="uid://cm77wj32fcxae" path="res://assets/sprites/Spaceship.png" id="1_ygtwh"]
 [ext_resource type="AudioStream" uid="uid://crdvf17iwj585" path="res://assets/sounds/rocket-launch.mp3" id="3_3fntx"]
+[ext_resource type="AudioStream" uid="uid://6txg1u2rsals" path="res://assets/sounds/damage-taken.wav" id="4_6mol5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ak2sm"]
 atlas = ExtResource("1_ygtwh")
@@ -219,10 +220,8 @@ script = ExtResource("1_2gx6f")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_wf0si")
-animation = &"damaged"
+animation = &"shoot"
 autoplay = "idle"
-frame = 3
-frame_progress = 1.0
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="."]
 scale = Vector2(2, 2)
@@ -240,3 +239,6 @@ position = Vector2(19, -19)
 
 [node name="ShootingSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_3fntx")
+
+[node name="DamagedSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_6mol5")

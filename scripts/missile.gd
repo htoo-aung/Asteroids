@@ -25,7 +25,8 @@ func start_explosion():
 	is_exploding = true
 	animatedSprite.play("explode")
 	explosion_sfx.play()
-	animatedSprite.connect("animation_finished", _on_explosion_finished)
+	if not animatedSprite.is_connected("animation_finished", _on_explosion_finished):
+		animatedSprite.connect("animation_finished", _on_explosion_finished)
 	
 func _on_body_entered(body: Node2D) -> void:
 	body.start_explosion()

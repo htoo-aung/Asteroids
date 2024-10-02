@@ -4,6 +4,7 @@ extends RigidBody2D
 @onready var asteroidSprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var asteroidCollisionShape: CollisionShape2D = $CollisionShape2D
 @onready var damageCollisionShape: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var asteroid_explosion_sfx: AudioStreamPlayer2D = $AsteroidExplosionSFX
 
 var lifetime := 30.0
 
@@ -25,7 +26,9 @@ func _physics_process(delta: float) -> void:
 
 func start_explosion():
 	animatedSprite.play("explode")
-	animatedSprite.connect("animation_finished", _on_explosion_finished)
+	asteroid_explosion_sfx.play()
+	if not animatedSprite.is_connected("animation_finished", _on_explosion_finished):
+		animatedSprite.connect("animation_finished", _on_explosion_finished)
 	
 	set_collision_layer(0)
 	set_collision_mask(0)

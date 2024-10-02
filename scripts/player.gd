@@ -1,5 +1,6 @@
 extends RigidBody2D
 
+@onready var damaged_sfx: AudioStreamPlayer2D = $DamagedSFX
 @onready var shooting_sfx: AudioStreamPlayer2D = $ShootingSFX
 @onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
@@ -32,6 +33,8 @@ func update_animation():
 		animatedSprite.play("rotate_left")
 	elif Input.is_action_pressed("rotate_right"):
 		animatedSprite.play("rotate_right")
+	elif Input.is_action_pressed("shoot"):
+		animatedSprite.play("shoot")
 	else:
 		animatedSprite.play("idle")
 
@@ -62,7 +65,6 @@ func shoot():
 	get_tree().current_scene.add_child(new_missile2)
 	
 	start_cooldown()
-	animatedSprite.play("shoot")
 	shooting_sfx.play()
 	
 	apply_central_impulse(Vector2.DOWN.rotated(rotation) * recoil_force)
@@ -106,6 +108,7 @@ func _on_warp_finished():
 
 func damage_taken():
 	health -= 20
+	damaged_sfx.play()
 	print(health)
 	is_damaged = true
 
