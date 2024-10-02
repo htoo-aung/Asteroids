@@ -1,8 +1,24 @@
-[gd_scene load_steps=23 format=3 uid="uid://brukriyo3lckw"]
+[gd_scene load_steps=28 format=3 uid="uid://brukriyo3lckw"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2gx6f"]
 [ext_resource type="Texture2D" uid="uid://cm77wj32fcxae" path="res://assets/sprites/Spaceship.png" id="1_ygtwh"]
 [ext_resource type="AudioStream" uid="uid://crdvf17iwj585" path="res://assets/sounds/rocket-launch.mp3" id="3_3fntx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ak2sm"]
+atlas = ExtResource("1_ygtwh")
+region = Rect2(96, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mq32"]
+atlas = ExtResource("1_ygtwh")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jy2m6"]
+atlas = ExtResource("1_ygtwh")
+region = Rect2(32, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nd1a"]
+atlas = ExtResource("1_ygtwh")
+region = Rect2(64, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kuo21"]
 atlas = ExtResource("1_ygtwh")
@@ -15,6 +31,10 @@ region = Rect2(64, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_xaepb"]
 atlas = ExtResource("1_ygtwh")
 region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cx8ei"]
+atlas = ExtResource("1_ygtwh")
+region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nnt2u"]
 atlas = ExtResource("1_ygtwh")
@@ -76,6 +96,23 @@ region = Rect2(0, 128, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ak2sm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mq32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jy2m6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nd1a")
+}],
+"loop": false,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_kuo21")
 }, {
 "duration": 1.0,
@@ -83,8 +120,11 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xaepb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cx8ei")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -155,14 +195,20 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0l0is")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eha54")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mge1x")
 }],
 "loop": false,
 "name": &"warp",
-"speed": 5.0
+"speed": 8.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cdx77"]
-height = 26.0
+radius = 12.5
 
 [node name="Player" type="RigidBody2D"]
 gravity_scale = 0.0

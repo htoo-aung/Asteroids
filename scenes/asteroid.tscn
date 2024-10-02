@@ -80,7 +80,7 @@ func _on_body_entered(body: Node2D) -> void:
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0djh4"]
-radius = 58.0086
+radius = 29.0
 
 [node name="Asteroid" type="RigidBody2D"]
 collision_layer = 2
@@ -106,6 +106,7 @@ shape = SubResource("CircleShape2D_22h4a")
 script = SubResource("GDScript_vqyi8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_0djh4")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

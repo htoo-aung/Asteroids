@@ -128,7 +128,7 @@ asteroid_scene = ExtResource("4_24ike")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Level" parent="Camera2D" instance=ExtResource("1_gedsy")]
+[node name="Level" parent="." instance=ExtResource("1_gedsy")]
 
 [node name="Background" type="Node" parent="."]
 

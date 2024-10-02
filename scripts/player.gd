@@ -15,7 +15,6 @@ func _ready():
 	timer.connect("timeout", _on_timer_timeout)
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	
 	warp()
 
 func _physics_process(delta: float) -> void:
@@ -94,6 +93,9 @@ func _on_warp_finished():
 	animatedSprite.disconnect("animation_finished", _on_warp_finished)
 
 func damage_taken():
+	player_health -= 20
+	animatedSprite.play("damaged")
+	print(player_health)
+	
+func death():
 	animatedSprite.play("death")
-	
-	
