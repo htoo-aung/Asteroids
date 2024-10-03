@@ -1,6 +1,6 @@
 extends Node
 
-@onready var scoreLabel: Label = $"../Score"
+@onready var scoreLabel: Label = $"../ScoreLabel"
 
 var score = 0
 

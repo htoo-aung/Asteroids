@@ -7,7 +7,7 @@ extends RigidBody2D
 
 var health := 100.0
 var rotate_speed := 2000.0
-var recoil_force := 80.0
+var recoil_force := 60.0
 var can_shoot = true
 var is_warp = false
 var is_damaged = false

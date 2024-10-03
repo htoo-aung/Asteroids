@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://b3vg3a1qdxhdt"]
+[gd_scene load_steps=52 format=3 uid="uid://b3vg3a1qdxhdt"]
 
 [ext_resource type="PackedScene" uid="uid://b1fgppfdgww5t" path="res://scenes/level.tscn" id="1_gedsy"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_w2mvy"]
@@ -23,6 +23,10 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_neicu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yhjjt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n8pud"]
 atlas = ExtResource("3_psbwy")
@@ -247,6 +251,99 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kj1an"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmsmr"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwg45"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_errpc"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivksd"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0u2w"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0r1v"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2efnh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kj1an")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmsmr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwg45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_errpc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivksd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0u2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0r1v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbs7j"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0m37"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(192, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4q6fx"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(224, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxgvb"]
+atlas = ExtResource("3_psbwy")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yaxvk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbs7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0m37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4q6fx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxgvb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
 [sub_resource type="Curve2D" id="Curve2D_vo2vv"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -612, -363, 0, 0, 0, 0, 615, -369, 0, 0, 0, 0, 624, 352, 0, 0, 0, 0, -618, 353, 0, 0, 0, 0, -612, -363)
@@ -286,7 +383,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_6xp1r")
 value = 100.0
 show_percentage = false
 
-[node name="Score" type="Label" parent="."]
+[node name="ScoreLabel" type="Label" parent="."]
 z_index = 1
 offset_left = -328.0
 offset_top = -307.0
@@ -294,6 +391,48 @@ offset_right = -200.0
 offset_bottom = -284.0
 theme_override_fonts/font = ExtResource("6_bakdp")
 text = "Score: 0"
+
+[node name="GameOverLabel" type="Label" parent="."]
+visible = false
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -37.0
+offset_right = 203.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_bakdp")
+theme_override_font_sizes/font_size = 45
+text = "GAME OVER"
+
+[node name="RetryButton" type="Button" parent="GameOverLabel"]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -153.5
+offset_top = 11.0
+offset_right = 154.5
+offset_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("6_bakdp")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_neicu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_neicu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_yhjjt")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_neicu")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_neicu")
+text = "RETRY?"
 
 [node name="NameNSID" type="Label" parent="."]
 z_index = -1
@@ -459,6 +598,21 @@ position = Vector2(-353, 131)
 sprite_frames = SubResource("SpriteFrames_sim25")
 autoplay = "default"
 
+[node name="BluePlanet" type="AnimatedSprite2D" parent="Background"]
+z_index = -1
+position = Vector2(-349, -74)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_2efnh")
+autoplay = "default"
+frame_progress = 0.474765
+
+[node name="PurpleVortex" type="AnimatedSprite2D" parent="Background"]
+z_index = -1
+position = Vector2(149, 203)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_yaxvk")
+autoplay = "default"
+
 [node name="AsteroidTimer" type="Timer" parent="."]
 
 [node name="AsteroidPath" type="Path2D" parent="."]
@@ -468,4 +622,5 @@ curve = SubResource("Curve2D_vo2vv")
 position = Vector2(-612, -363)
 rotation = -0.00488994
 
+[connection signal="pressed" from="GameOverLabel/RetryButton" to="HUDManager" method="_on_retry_button_pressed"]
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_mob_timer_timeout"]
