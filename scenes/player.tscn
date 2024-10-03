@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://brukriyo3lckw"]
+[gd_scene load_steps=30 format=3 uid="uid://brukriyo3lckw"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2gx6f"]
 [ext_resource type="Texture2D" uid="uid://cm77wj32fcxae" path="res://assets/sprites/Spaceship.png" id="1_ygtwh"]
@@ -211,6 +211,10 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cdx77"]
 radius = 12.5
 
+[sub_resource type="Curve" id="Curve_7pdhg"]
+_data = [Vector2(0.0307263, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.104513), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Player" type="RigidBody2D"]
 gravity_scale = 0.0
 contact_monitor = true
@@ -242,3 +246,21 @@ stream = ExtResource("3_3fntx")
 
 [node name="DamagedSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_6mol5")
+
+[node name="ExplosionParticles" type="Node2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="ExplosionParticles"]
+z_index = -1
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 6.0
+scale_amount_max = 8.0
+scale_amount_curve = SubResource("Curve_7pdhg")
+color = Color(0.924315, 0.233892, 0.0863005, 1)

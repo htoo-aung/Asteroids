@@ -122,6 +122,7 @@ func _on_warp_finished():
 func damage_taken():
 	health -= 20
 	damaged_sfx.play()
+	$ExplosionParticles/CPUParticles2D.emitting = true
 	print(health)
 	is_damaged = true
 	if health <= 0:
