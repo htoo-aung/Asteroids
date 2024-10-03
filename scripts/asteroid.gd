@@ -44,8 +44,10 @@ func _on_explosion_finished():
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	var collision_normal = (body.global_position - global_position).normalized()
 	body.is_damaged = true
 	body.damage_taken()
+	body.apply_central_impulse(collision_normal * 100.0)
 	print("hit")
 	
 func start_lifetime():
