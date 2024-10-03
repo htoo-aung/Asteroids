@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://b3vg3a1qdxhdt"]
+[gd_scene load_steps=53 format=3 uid="uid://b3vg3a1qdxhdt"]
 
 [ext_resource type="PackedScene" uid="uid://b1fgppfdgww5t" path="res://scenes/level.tscn" id="1_gedsy"]
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_w2mvy"]
@@ -8,21 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://dbdixs75phf3" path="res://scenes/game_manager.tscn" id="3_uk04j"]
 [ext_resource type="PackedScene" uid="uid://bkkrxhpnkcpss" path="res://scenes/asteroid.tscn" id="4_24ike"]
 [ext_resource type="FontFile" uid="uid://ddg18mf0nb4yj" path="res://assets/fonts/PressStart2P-vaV7.ttf" id="6_bakdp"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybsgm"]
-bg_color = Color(0.129412, 0.00392157, 0.211765, 0.568627)
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6xp1r"]
-bg_color = Color(0.0509804, 0.729412, 0, 0.54902)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+[ext_resource type="Texture2D" uid="uid://nyeaadjw1oy2" path="res://assets/sprites/health-bar-over.png" id="7_61o8m"]
+[ext_resource type="Texture2D" uid="uid://bwvlt6taw3ndt" path="res://assets/sprites/health-bar-under.png" id="7_cg0y4"]
+[ext_resource type="Texture2D" uid="uid://bco2ju4c4rmem" path="res://assets/sprites/health-bar-progress.png" id="7_ynmwg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_neicu"]
 
@@ -366,22 +354,22 @@ script = ExtResource("3_ihvn3")
 [node name="Level" parent="." instance=ExtResource("1_gedsy")]
 z_index = -2
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-z_index = 1
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+custom_minimum_size = Vector2(200, 20)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -552.0
-offset_top = -308.0
-offset_right = -352.0
-offset_bottom = -281.0
+offset_left = -551.0
+offset_top = -309.0
+offset_right = -351.0
+offset_bottom = -289.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
-theme_override_styles/background = SubResource("StyleBoxFlat_ybsgm")
-theme_override_styles/fill = SubResource("StyleBoxFlat_6xp1r")
 value = 100.0
-show_percentage = false
+texture_under = ExtResource("7_ynmwg")
+texture_over = ExtResource("7_61o8m")
+texture_progress = ExtResource("7_cg0y4")
 
 [node name="ScoreLabel" type="Label" parent="."]
 z_index = 1

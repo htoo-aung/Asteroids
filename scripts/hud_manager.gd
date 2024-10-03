@@ -1,6 +1,6 @@
 extends Node
 
-@onready var progress_bar: ProgressBar = $"../ProgressBar"
+@onready var health_bar: TextureProgressBar = $"../HealthBar"
 @onready var player: RigidBody2D = $"../Player"
 @onready var game_over_label: Label = $"../GameOverLabel"
 @onready var retry_button: Button = $"../GameOverLabel/RetryButton"
@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 	game_over()
 	
 func update_health(player_health: float):
-	progress_bar.value = player_health
+	health_bar.value = player_health
 	
 func game_over():
 	if (player.get_health() <= 0):
